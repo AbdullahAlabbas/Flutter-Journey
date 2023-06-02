@@ -1,5 +1,7 @@
+import 'dart:io';
+
 main(){
-  var x = 100;
+   var x = stdin.readLineSync();
 
   if(x is int){
     print('integer');
