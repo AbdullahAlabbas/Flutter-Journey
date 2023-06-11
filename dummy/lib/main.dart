@@ -1,25 +1,70 @@
 import 'package:flutter/material.dart';
 
-// flutter create dummy
-void main() => runApp(const MaterialApp(home: Home()));
+void main() {
+  runApp(DummyApp());
+}
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class DummyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Dummy App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: DummyHomePage(),
+    );
+  }
+}
+
+class DummyHomePage extends StatelessWidget {
+  final List<String> dummyItems = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SaudiVolleyball'),
-        backgroundColor: Colors.blueGrey[900],
+        title: Text('Dummy App'),
       ),
-      body:  Center(
-          child: Image.asset('assets/vb.jpg') ,
+      body: ListView.builder(
+        itemCount: dummyItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(dummyItems[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DummyItemDetailsPage(item: dummyItems[index]),
+                ),
+              );
+            },
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.blueGrey[500],
-        child: const Text('+'),
+    );
+  }
+}
+
+class DummyItemDetailsPage extends StatelessWidget {
+  final String item;
+
+  DummyItemDetailsPage({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Item Details'),
+      ),
+      body: Center(
+        child: Text(item),
       ),
     );
   }
