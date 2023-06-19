@@ -19,7 +19,7 @@ class _CardState extends State<Card> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: const Text('ID Card'),
+        title: const Text('ID Card.'),
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
